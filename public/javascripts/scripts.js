@@ -18,17 +18,23 @@ $(document).ready(function () {
         console.log(data);
         // for each customer, create an LI with their name in a P tag
 
+        var $results = $('#results');
 
-        //data.forEach(function (elem) {
+        data.forEach(function (elem) {
         //
-        //    // create a new LI node with the id set to the customer id
-        //    var $li = $('<li>', {id: elem.id});
-        //    var $p = $('<p>');
-        //    $p.text('Customer: ' + elem.firstName + ' ' + elem.lastName + ' id: ' + elem.id);
-        //    $li.append($p);
-        //    $results.append($li);
-        //
-        //});
+
+            var $item = $('<div>', {class: 'item'});
+            var $fill = $('<div>', {class: 'fill'});
+            var $caption = $('<div>', {class: 'carousel-caption'});
+            var $name = $('<p>', {class: 'bigwords'}).text(elem.name);
+            var $shoutout = $('<p>', {class: 'shoutout'}).text(elem.shoutout);
+
+            var $text = $caption.append($name, $shoutout);
+            var $slide = $item.append($fill, $text);
+
+            $results.append($slide);
+        });
+
     }).fail(function (jqXHR, textStatus, errorThrown) {
         // same as error
         console.log('There was an error: ', errorThrown);
